@@ -191,9 +191,9 @@ section.s{padding-block:56px}
 .qual h3::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#2F5BFF,#7FE3D4)}
 .links{display:flex;flex-wrap:wrap;gap:8px}
 .links a,.links .nolink{display:inline-flex;align-items:center;gap:6px;font-size:14px;padding:7px 12px;border-radius:10px;line-height:1.4}
-.links a{background:var(--chip);color:var(--accent);font-weight:600;text-decoration:none}
+.links a{background:#fff;border:1px solid var(--accent);color:var(--accent);font-weight:600;text-decoration:none;transition:background .2s}
 .links a::after{content:"↗";font-size:12px}
-.links a:hover{background:#DCE4FF}
+.links a:hover{background:var(--chip)}
 .links a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .links .nolink{background:#fff;border:1px solid var(--line);color:var(--ink-2)}
 @media (max-width:760px){.quals{grid-template-columns:1fr}}
