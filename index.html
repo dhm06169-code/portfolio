@@ -394,7 +394,7 @@ function meta(p){return "<span>"+esc(p.org)+"</span><span>"+esc(p.period)+"</spa
 
 /* project list */
 document.getElementById("projList").innerHTML=P.filter(function(p){return p.list}).map(function(p){
- return '<article class="proj glass"><a class="thumb" href="#'+p.slug+'" style="--thumb:url(img/'+p.slug+'-v3.webp)" aria-label="'+esc(p.title)+' 자세히 보기"><img src="img/'+p.slug+'-v3.webp" alt="'+esc(p.svc)+' 대표 화면" width="1600" height="1700" loading="lazy"></a><div>'+
+ return '<article class="proj glass"><a class="thumb" href="#'+p.slug+'" style="--thumb:url(img/'+p.slug+'-v4.webp)" aria-label="'+esc(p.title)+' 자세히 보기"><img src="img/'+p.slug+'-v4.webp" alt="'+esc(p.svc)+' 대표 화면" width="1600" height="1700" loading="lazy"></a><div>'+
  '<span class="svc">'+esc(p.svc)+'</span><h3>'+esc(p.title)+'</h3><div class="meta">'+meta(p)+'</div>'+
  (p.intro?'<p>'+esc(p.intro)+'</p>':'')+bl(p.bullets)+
  '<a class="btn" href="#'+p.slug+'">자세히 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>';
