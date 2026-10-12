@@ -47,7 +47,27 @@ img{max-width:100%;display:block}
 .nav ul a:hover,.nav ul a:focus-visible{background:var(--chip)}
 .back{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;border-radius:999px}
 .back:hover{background:var(--chip)}
-@media (max-width:720px){.nav ul li:not(:last-child){display:none}}
+.nav-in{transition:max-width .35s cubic-bezier(.2,.8,.2,1),padding .35s,border-radius .35s;max-width:1200px;margin-left:auto}
+.logo{transition:opacity .2s}
+.menu-btn{display:none;flex:none;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;padding:0}
+.menu-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.menu-btn i{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;position:relative;transition:transform .25s,background .2s}
+.menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .25s}
+.menu-btn i::before{top:-6px}.menu-btn i::after{top:6px}
+.menu-btn[aria-expanded="true"] i{background:transparent}
+.menu-btn[aria-expanded="true"] i::before{transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] i::after{transform:translateY(-6px) rotate(-45deg)}
+.m-menu{position:absolute;right:max(16px,4vw);top:calc(100% - 4px);min-width:200px;border-radius:20px;padding:8px;display:flex;flex-direction:column;background:rgba(255,255,255,.96)}
+.m-menu a{display:block;padding:12px 16px;border-radius:12px;text-decoration:none;font-size:15px;font-weight:600}
+.m-menu a:hover,.m-menu a:focus-visible{background:var(--chip);outline:none}
+@media (max-width:720px){
+ #mainNav{display:none}
+ .menu-btn{display:grid}
+ .nav.compact .nav-in{max-width:52px;height:52px;padding:6px;border-radius:50%}
+ .nav.compact .logo{display:none}
+ .nav.compact .nav-in{justify-content:center}
+}
+@media (min-width:721px){.m-menu{display:none!important}}
 
 /* hero */
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:40px;align-items:center;padding-block:48px 72px}
@@ -211,6 +231,10 @@ footer p{color:#AEB6C8;margin:0 0 24px}
         <li><a href="#skills">스킬</a></li>
       </ul>
     </nav>
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileMenu"><i aria-hidden="true"></i></button>
+    <div class="m-menu glass" id="mobileMenu" hidden>
+      <a href="#about">소개</a><a href="#experience">경력</a><a href="#projects">프로젝트</a><a href="#more">기타 경험</a><a href="#skills">스킬</a>
+    </div>
     <a id="backLink" class="back" href="#projects" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>전체 프로젝트
     </a>
@@ -371,7 +395,7 @@ function route(){
  for(var i=0;i<P.length;i++)if(P[i].slug===h)p=i;
  if(p===null){
    var wasDetail=!det.hidden;
-   det.hidden=true;home.hidden=false;nav.hidden=false;back.hidden=true;
+   det.hidden=true;home.hidden=false;nav.hidden=false;back.hidden=true;document.getElementById("menuBtn").hidden=false;
    if(wasDetail){var t=h&&document.getElementById(h);if(t)t.scrollIntoView();else window.scrollTo(0,0)}
    return;
  }
@@ -385,8 +409,17 @@ function route(){
   imgs+='<img src="'+base+'-1280.webp" srcset="'+base+'-1280.webp 1280w, '+base+'-2560.webp 2560w" sizes="(max-width: 1232px) calc(100vw - 32px), 1200px" alt="'+esc(d.title)+" 상세 "+k+" / "+d.pages+'" width="1280" height="720" loading="'+(k<3?"eager":"lazy")+'"'+(k===1?' fetchpriority="high"':'')+' decoding="async">';}
  document.getElementById("dPages").innerHTML=imgs;
  var nx=document.getElementById("dNext");nx.href="#"+n.slug;document.getElementById("dNextT").textContent=n.title;
- home.hidden=true;det.hidden=false;nav.hidden=true;back.hidden=false;window.scrollTo(0,0);
+ home.hidden=true;det.hidden=false;nav.hidden=true;back.hidden=false;document.getElementById("menuBtn").hidden=true;closeMenu();window.scrollTo(0,0);
 }
+/* mobile menu: the bar shrinks to a round menu button once the visitor scrolls down */
+var navEl=document.querySelector(".nav"),mBtn=document.getElementById("menuBtn"),mMenu=document.getElementById("mobileMenu");
+function closeMenu(){mMenu.hidden=true;mBtn.setAttribute("aria-expanded","false");mBtn.setAttribute("aria-label","메뉴 열기")}
+mBtn.addEventListener("click",function(e){e.stopPropagation();var open=mMenu.hidden;mMenu.hidden=!open;mBtn.setAttribute("aria-expanded",open?"true":"false");mBtn.setAttribute("aria-label",open?"메뉴 닫기":"메뉴 열기")});
+mMenu.addEventListener("click",function(e){if(e.target.tagName==="A")closeMenu()});
+document.addEventListener("click",function(e){if(!mMenu.hidden&&!mMenu.contains(e.target))closeMenu()});
+addEventListener("keydown",function(e){if(e.key==="Escape"&&!mMenu.hidden){closeMenu();mBtn.focus()}});
+var navFr=0;function navUp(){navFr=0;navEl.classList.toggle("compact",scrollY>80)}
+addEventListener("scroll",function(){if(!navFr)navFr=requestAnimationFrame(navUp)},{passive:true});navUp();
 addEventListener("hashchange",route);route();
 
 /* character sways from 3deg to -3deg as the About card travels up through the screen */
