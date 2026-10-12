@@ -158,11 +158,21 @@ section.s{padding-block:56px}
 .proj .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .proj:hover .thumb img{transform:scale(1.04)}
 .proj>div{padding:28px;display:grid;gap:14px;align-content:center}
+.proj>div{gap:0}
+.proj>div>h3{margin-top:6px}
+.proj>div>.meta{margin-top:9px}
+.proj>div>.meta+*{margin-top:22px}
+.proj>div>p+ul{margin-top:14px}
+.proj>div>.btn{margin-top:14px}
 .svc{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12px;color:var(--accent)}
 .svc::before{content:"";width:6px;height:6px;border-radius:50%;background:#5FE0B0}
 .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--f-mono);font-size:12.5px;color:var(--mute)}
 .proj .svc{font-family:var(--f-body);font-size:18px;font-weight:700;line-height:1.4}
 .proj .svc::before{display:none}
+/* card header spacing: name→title 6px, title→info 9px, info→description 22px (grid gap is 14px) */
+.proj>div>h3{margin-top:-8px}
+.proj>div>.meta{margin-top:-5px}
+.proj>div>.meta+*{margin-top:8px}
 .proj h3{margin:0;font-size:18px;font-weight:700;letter-spacing:-.03em;line-height:1.3;text-wrap:balance}
 .proj p{margin:0;font-size:15px;line-height:1.7;color:var(--ink-2)}
 .proj .share{color:var(--ink);font-weight:700}
