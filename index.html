@@ -13,7 +13,7 @@
 html,body{margin:0}
 /* Layout: glass nav over a faint grid, chat-console hero, timeline, project cards, slide-by-slide detail views */
 :root{
-  --bg:#F5F7FA; --ink:#0E1424; --ink-2:#3A4356; --mute:#7A8396;
+  --bg:#F3F4F6; --ink:#0E1424; --ink-2:#3A4356; --mute:#7A8396;
   --line:#DDE3EE; --glass:rgba(255,255,255,.72); --glass-line:rgba(255,255,255,.9);
   --accent:#3355FF; --accent-2:#5FD3E6; --chip:#E8EDFF; --chip-ink:#2C46D6;
   --dark:#0E1424; --on-dark:#FFFFFF;
@@ -28,7 +28,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{max-width:100%;display:block}
-.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bg{position:absolute;top:0;left:0;right:0;height:max(1600px,170vh);z-index:-1;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#EEF1FC 0%,#F2F4FA 45%,rgba(243,244,246,0) 100%);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 45%,transparent 100%)}
 .bg .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.45;mask-image:linear-gradient(to bottom,#000 0,transparent 70%)}
 .bg .a{position:absolute;border-radius:50%;filter:blur(80px)}
 .bg .a1{width:640px;height:640px;right:-160px;top:-160px;background:radial-gradient(circle,rgba(47,91,255,.32),rgba(47,91,255,0) 70%)}
