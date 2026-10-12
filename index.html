@@ -159,10 +159,6 @@ section.s{padding-block:56px}
 .proj .thumb::before{content:"";position:absolute;inset:-40px;background:var(--thumb) center/cover no-repeat;filter:blur(36px) saturate(1.1);opacity:.9}
 .proj .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .proj:hover .thumb img{transform:scale(1.04)}
-/* 기로그: fit the image to the card height so the phone is never cropped; spare width shows the image's own light-grey ground */
-.proj-girog .thumb{background:#F7F7F7}
-.proj-girog .thumb::before{display:none}
-.proj-girog .thumb img{object-fit:contain}
 .proj>div{padding:28px;display:grid;gap:14px;align-content:center}
 .svc{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12px;color:var(--accent)}
 .svc::before{content:"";width:6px;height:6px;border-radius:50%;background:#5FE0B0}
@@ -397,7 +393,7 @@ function meta(p){return "<span>"+esc(p.org)+"</span><span>"+esc(p.period)+"</spa
 
 /* project list */
 document.getElementById("projList").innerHTML=P.filter(function(p){return p.list}).map(function(p){
- return '<article class="proj glass proj-'+p.slug+'"><a class="thumb" href="#'+p.slug+'" style="--thumb:url(img/'+p.slug+'-v2.webp)" aria-label="'+esc(p.title)+' 자세히 보기"><img src="img/'+p.slug+'-v2.webp" alt="'+esc(p.svc)+' 대표 화면" width="1600" height="1700" loading="lazy"></a><div>'+
+ return '<article class="proj glass"><a class="thumb" href="#'+p.slug+'" style="--thumb:url(img/'+p.slug+'-v2.webp)" aria-label="'+esc(p.title)+' 자세히 보기"><img src="img/'+p.slug+'-v2.webp" alt="'+esc(p.svc)+' 대표 화면" width="1600" height="1700" loading="lazy"></a><div>'+
  '<span class="svc">'+esc(p.svc)+'</span><h3>'+esc(p.title)+'</h3><div class="meta">'+meta(p)+'</div>'+
  (p.intro?'<p>'+esc(p.intro)+'</p>':'')+bl(p.bullets)+
  '<a class="btn" href="#'+p.slug+'">자세히 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></article>';
