@@ -220,10 +220,10 @@ footer p{color:#AEB6C8;margin:0 0 24px}
 /* detail view */
 .pd{padding-block:40px 64px}
 /* detail header mirrors the home project card: name → title 6px, title → info 9px, info → summary 22px */
-.pd>.svc{display:block;font-family:var(--f-body);font-size:20px;font-weight:700;line-height:1;color:var(--accent)}
+.pd>.svc{display:block;font-family:var(--f-body);font-size:clamp(30px,5vw,60px);font-weight:700;line-height:1;color:var(--accent)}
 .pd>.svc::before{display:none}
-.pd h1{font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1.3;margin:3px 0 0;color:var(--ink);text-wrap:balance}
-.pd>.meta{margin-top:9px}
+.pd h1{font-size:clamp(30px,5vw,60px);font-weight:700;letter-spacing:-.03em;line-height:1.15;margin:2px 0 0;color:var(--ink);text-wrap:balance}
+.pd>.meta{margin-top:9px;font-size:clamp(17px,2.6vw,37.5px);line-height:1.3;gap:6px .8em}
 .summary{border-radius:22px;padding:22px 24px 10px;max-width:900px;margin:22px 0 32px}
 .summary p{margin:0 0 12px;color:var(--ink-2)}
 .pages{display:grid;gap:16px}
